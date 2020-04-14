@@ -1,24 +1,20 @@
-package com.vagif.model;
+package com.vagif.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.*;
 import java.util.UUID;
+
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CustomerDto {
+public class Customer {
 
-    @NotNull
     private UUID customerId;
-
-    @NotBlank
-    @Size(min = 3, max = 100)
     private String customerName;
 
 }

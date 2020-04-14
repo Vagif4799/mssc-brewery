@@ -5,10 +5,16 @@ import com.vagif.model.BeerDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+@Validated
 @RequestMapping("/api/v1/beer")
 @RestController
 public class BeerController {
@@ -25,7 +31,7 @@ public class BeerController {
     }
 
     @PostMapping // POST - create new beer
-    public ResponseEntity handlePost(@RequestBody BeerDto beerDto) {
+    public ResponseEntity handlePost(@Valid @RequestBody BeerDto beerDto) {
 
         BeerDto savedBeer = beerService.saveBeer(beerDto);
 
@@ -37,7 +43,7 @@ public class BeerController {
     }
 
     @PutMapping({"/{beerId}"})
-    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @RequestBody BeerDto beerDto) {
+    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @Valid @RequestBody BeerDto beerDto) {
 
         beerService.updateBeer(beerId, beerDto);
 
@@ -50,4 +56,19 @@ public class BeerController {
         beerService.deleteById(beerId);
     }
 
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
